@@ -1,0 +1,61 @@
+---
+import Badge from './Badge.astro';
+import Button from './Button.astro';
+import Icon from './Icon.astro';
+
+const badges = ['DevOps', 'Triage & MCO', 'CI/CD Workflows', 'Production B2B'];
+const repoUrl = 'https://github.com/ferriskey/ferriskey/';
+---
+
+<header class="relative overflow-hidden border-b-2 border-base-950">
+  <!-- Grille décorative -->
+  <div
+    class="pointer-events-none absolute inset-0 opacity-[0.07]"
+    style="background-image: linear-gradient(to right, #f97316 1px, transparent 1px), linear-gradient(to bottom, #f97316 1px, transparent 1px); background-size: 48px 48px;"
+    aria-hidden="true"
+  >
+  </div>
+  <!-- Halo "Rust" -->
+  <div
+    class="pointer-events-none absolute -top-32 left-1/2 h-96 w-[40rem] -translate-x-1/2 rounded-full bg-rust-600/20 blur-[120px]"
+    aria-hidden="true"
+  >
+  </div>
+
+  <div class="relative mx-auto max-w-5xl px-6 py-24 text-center sm:py-32">
+    <span
+      class="mb-8 inline-flex items-center gap-2 border border-rust-600/40 bg-base-950/60 px-4 py-1.5 font-mono text-xs uppercase tracking-widest text-rust-300"
+    >
+      <span class="relative flex h-2 w-2">
+        <span
+          class="absolute inline-flex h-full w-full animate-ping rounded-full bg-rust-500 opacity-75"
+        ></span>
+        <span class="relative inline-flex h-2 w-2 rounded-full bg-rust-500"></span>
+      </span>
+      Restitution · Insertion Professionnelle
+    </span>
+
+    <h1
+      class="mx-auto max-w-4xl text-balance text-4xl font-extrabold leading-tight tracking-tight text-white sm:text-5xl md:text-6xl"
+    >
+      Gouvernance &amp; Mécaniques de la
+      <span class="text-rust-500">Contribution Open Source</span>
+    </h1>
+
+    <p class="mx-auto mt-6 max-w-2xl text-pretty text-base text-slate-400 sm:text-lg">
+      Restitution d'Action IRL : Comprendre les processus de maintenance d'un
+      dépôt mature.
+    </p>
+
+    <div class="mt-8 flex flex-wrap justify-center gap-3">
+      {badges.map((b) => <Badge label={b} />)}
+    </div>
+
+    <div class="mt-10 flex justify-center">
+      <Button href={repoUrl} variant="primary" class="px-6 py-3 text-base">
+        <Icon slot="icon-left" name="github" class="h-5 w-5" />
+        Explorer le dépôt FerrisKey
+      </Button>
+    </div>
+  </div>
+</header>

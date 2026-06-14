@@ -1,0 +1,69 @@
+---
+import Card from './Card.astro';
+
+const cards = [
+  {
+    title: 'Pilotage Stratégique',
+    description:
+      'Définition de la Roadmap publique et priorisation de la dette technique.',
+    icon: 'map' as const,
+    index: '01',
+    links: [
+      { label: 'Consulter la Roadmap', href: 'https://ferriskey.rs/roadmap' },
+      {
+        label: 'Voir le Board de Pilotage',
+        href: 'https://github.com/ferriskey/ferriskey/projects/1',
+      },
+    ],
+  },
+  {
+    title: 'Amélioration Continue',
+    description:
+      'Gestion du cycle de vie du code au quotidien : qualification et triage des bugs, réalisation de revues de code, et implémentation de correctifs (fixes) ou de nouvelles fonctionnalités.',
+    icon: 'cycle' as const,
+    index: '02',
+    links: [
+      {
+        label: 'Tableau des Issues',
+        href: 'https://github.com/ferriskey/ferriskey/issues',
+      },
+      {
+        label: 'Historique des PRs',
+        href: 'https://github.com/ferriskey/ferriskey/pulls',
+      },
+    ],
+  },
+  {
+    title: 'Mise en Production B2B',
+    description:
+      'Déploiement et intégration de la solution en conditions réelles pour sécuriser les accès de clients finaux.',
+    icon: 'rocket' as const,
+    index: '03',
+    links: [
+      {
+        label: 'Cas client : Albera Sols & Énergies',
+        href: 'https://alberasolsetenergies.fr/',
+      },
+    ],
+  },
+];
+---
+
+<section id="livrables" class="border-b-2 border-base-950">
+  <div class="mx-auto max-w-6xl px-6 py-20 sm:py-24">
+    <p class="mb-3 font-mono text-xs uppercase tracking-widest text-rust-500">
+      // Preuves Terrain
+    </p>
+    <h2 class="max-w-3xl text-3xl font-bold tracking-tight text-white sm:text-4xl">
+      Les livrables concrets de l'action
+    </h2>
+    <p class="mt-4 max-w-2xl text-slate-400">
+      Trois axes de contribution illustrant le cycle complet de maintenance d'un
+      projet open source mature.
+    </p>
+
+    <div class="mt-12 grid gap-6 md:grid-cols-3">
+      {cards.map((card) => <Card {...card} />)}
+    </div>
+  </div>
+</section>

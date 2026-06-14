@@ -1,0 +1,50 @@
+---
+import Icon from './Icon.astro';
+
+interface Props {
+  href: string;
+  variant?: 'primary' | 'secondary';
+  external?: boolean;
+  icon?: 'arrow' | 'none';
+  class?: string;
+}
+
+const {
+  href,
+  variant = 'primary',
+  external = true,
+  icon = 'arrow',
+  class: className = '',
+} = Astro.props;
+
+const baseClasses =
+  'group/btn inline-flex items-center justify-center gap-2 border-2 px-4 py-2.5 text-sm font-semibold transition-all duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-rust-400 focus-visible:ring-offset-2 focus-visible:ring-offset-base-900';
+
+const variants: Record<NonNullable<Props['variant']>, string> = {
+  primary:
+    'border-base-950 bg-rust-600 text-white shadow-[4px_4px_0_0_var(--color-base-950)] hover:bg-rust-500 hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[6px_6px_0_0_var(--color-base-950)] active:translate-x-0 active:translate-y-0 active:shadow-[2px_2px_0_0_var(--color-base-950)]',
+  secondary:
+    'border-rust-600/60 bg-base-850 text-rust-300 shadow-[4px_4px_0_0_var(--color-base-950)] hover:border-rust-500 hover:bg-base-700 hover:text-white hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[6px_6px_0_0_var(--color-base-950)] active:translate-x-0 active:translate-y-0 active:shadow-[2px_2px_0_0_var(--color-base-950)]',
+};
+
+const target = external ? '_blank' : undefined;
+const rel = external ? 'noopener noreferrer' : undefined;
+---
+
+<a
+  href={href}
+  target={target}
+  rel={rel}
+  class={`${baseClasses} ${variants[variant]} ${className}`}
+>
+  <slot name="icon-left" />
+  <span class="leading-none"><slot /></span>
+  {
+    icon === 'arrow' && (
+      <Icon
+        name="arrow"
+        class="h-4 w-4 transition-transform duration-150 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5"
+      />
+    )
+  }
+</a>
