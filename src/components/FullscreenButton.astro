@@ -1,0 +1,79 @@
+---
+// Bouton plein écran (Fullscreen API) — utile en soutenance
+---
+
+<button
+  id="fullscreen-btn"
+  type="button"
+  aria-label="Basculer en plein écran"
+  class="group fixed right-6 top-6 z-50 inline-flex items-center gap-2 border-2 border-base-950 bg-base-800 px-3 py-2.5 text-sm font-semibold text-slate-200 shadow-[4px_4px_0_0_var(--color-base-950)] transition-all duration-150 hover:-translate-x-0.5 hover:-translate-y-0.5 hover:border-rust-500 hover:bg-base-700 hover:text-white hover:shadow-[6px_6px_0_0_var(--color-base-950)]"
+>
+  <!-- Entrer en plein écran -->
+  <svg
+    data-fs-enter
+    xmlns="http://www.w3.org/2000/svg"
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke-width="1.8"
+    stroke="currentColor"
+    class="h-5 w-5"
+    aria-hidden="true"
+  >
+    <path
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      d="M3.75 3.75v4.5m0-4.5h4.5m-4.5 0L9 9M3.75 20.25v-4.5m0 4.5h4.5m-4.5 0L9 15M20.25 3.75h-4.5m4.5 0v4.5m0-4.5L15 9m5.25 11.25h-4.5m4.5 0v-4.5m0 4.5L15 15"
+    ></path>
+  </svg>
+  <!-- Quitter le plein écran -->
+  <svg
+    data-fs-exit
+    xmlns="http://www.w3.org/2000/svg"
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke-width="1.8"
+    stroke="currentColor"
+    class="hidden h-5 w-5"
+    aria-hidden="true"
+  >
+    <path
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      d="M9 9V4.5M9 9H4.5M9 9L3.75 3.75M9 15v4.5M9 15H4.5M9 15l-5.25 5.25M15 9h4.5M15 9V4.5M15 9l5.25-5.25M15 15h4.5M15 15v4.5m0-4.5l5.25 5.25"
+    ></path>
+  </svg>
+  <span class="hidden sm:inline" data-fs-label>Plein écran</span>
+</button>
+
+<script>
+  const btn = document.getElementById('fullscreen-btn');
+  const iconEnter = btn?.querySelector<HTMLElement>('[data-fs-enter]');
+  const iconExit = btn?.querySelector<HTMLElement>('[data-fs-exit]');
+  const label = btn?.querySelector<HTMLElement>('[data-fs-label]');
+
+  const sync = () => {
+    const active = Boolean(document.fullscreenElement);
+    iconEnter?.classList.toggle('hidden', active);
+    iconExit?.classList.toggle('hidden', !active);
+    if (label) label.textContent = active ? 'Quitter' : 'Plein écran';
+    btn?.setAttribute(
+      'aria-label',
+      active ? 'Quitter le plein écran' : 'Basculer en plein écran',
+    );
+  };
+
+  btn?.addEventListener('click', async () => {
+    try {
+      if (document.fullscreenElement) {
+        await document.exitFullscreen();
+      } else {
+        await document.documentElement.requestFullscreen();
+      }
+    } catch {
+      /* API indisponible ou refusée — on ignore */
+    }
+  });
+
+  document.addEventListener('fullscreenchange', sync);
+  sync();
+</script>

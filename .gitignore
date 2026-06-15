@@ -22,3 +22,7 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# pnpm : artefact d'environnement (approbation des builds natifs),
+# géré via package.json > pnpm.onlyBuiltDependencies — jamais commité
+pnpm-workspace.yaml

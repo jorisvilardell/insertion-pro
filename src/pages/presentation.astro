@@ -1,0 +1,253 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Slide from '../components/slides/Slide.astro';
+import SplitSlide from '../components/slides/SplitSlide.astro';
+import Bullet from '../components/slides/Bullet.astro';
+import BackToIndex from '../components/BackToIndex.astro';
+import FullscreenButton from '../components/FullscreenButton.astro';
+
+const total = 8;
+const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
+---
+
+<Layout title="Soutenance — Insertion dans l'Open Source">
+  <div
+    id="deck"
+    class="h-screen w-full snap-y snap-mandatory overflow-y-auto overscroll-y-contain scroll-smooth"
+  >
+    <!-- ====================== SLIDE 1 — Titre ====================== -->
+    <Slide index={1} total={total} eyebrow="Partie 1 · Introduction" id="slide-1">
+      <div class="mx-auto max-w-5xl text-center">
+        <h1
+          class="text-5xl font-extrabold leading-tight tracking-tight text-white sm:text-6xl"
+        >
+          Insertion dans l'<span class="text-rust-500">Open Source</span>
+        </h1>
+        <p class="mt-6 text-2xl text-slate-400 sm:text-3xl">
+          Restitution d'Action IRL sur le projet FerrisKey
+        </p>
+
+        <div class="mx-auto mt-12 max-w-5xl">
+          <img
+            src={`${base}screens/screen1.png`}
+            alt="Logo FerrisKey"
+            class="w-full h-auto rounded-xl shadow-2xl border border-slate-700 object-contain bg-base-950 aspect-[16/10]"
+          />
+        </div>
+
+        <p class="mt-10 font-mono text-sm text-slate-500">
+          ↓ Défiler · ou flèches du clavier
+        </p>
+      </div>
+    </Slide>
+
+    <!-- ====================== SLIDE 2 — Mon Rôle ====================== -->
+    <SplitSlide
+      index={2}
+      total={total}
+      id="slide-2"
+      eyebrow="Partie 2 · La Casquette Mainteneur"
+      title="Mon Rôle : Maintenir"
+      image={{
+        src: `${base}screens/screen2.png`,
+        alt: 'Activité du dépôt FerrisKey : issues et Pull Requests triées',
+      }}
+    >
+      <Bullet>Revue et qualification quotidienne des issues</Bullet>
+      <Bullet>Revue de code et validation des Pull Requests</Bullet>
+      <Bullet>Suivi de la Roadmap et synchronisations d'équipe (Weekly)</Bullet>
+      <Bullet>Gestion, communication et Onboarding des contributeurs</Bullet>
+      <Bullet>Amélioration continue : Feature, Fix &amp; Déploiement en production</Bullet>
+    </SplitSlide>
+
+    <!-- ====================== SLIDE 3 — Guide de Contribution ====================== -->
+    <SplitSlide
+      index={3}
+      total={total}
+      id="slide-3"
+      eyebrow="Partie 3 · Outil 1 / 5"
+      title="Le Guide de Contribution"
+      image={{
+        src: `${base}screens/screen3.png`,
+        alt: 'Fichier CONTRIBUTING.md du dépôt FerrisKey',
+      }}
+    >
+      <Bullet>Fichier CONTRIBUTING.md : La pierre angulaire</Bullet>
+      <Bullet>Définition claire des règles du dépôt (styles, formats de commits)</Bullet>
+      <Bullet>Conseils et astuces techniques pour pouvoir cloner et compiler</Bullet>
+    </SplitSlide>
+
+    <!-- ====================== SLIDE 4 — Roadmap ====================== -->
+    <SplitSlide
+      index={4}
+      total={total}
+      id="slide-4"
+      eyebrow="Partie 3 · Outil 2 / 5"
+      title="La Roadmap Projet"
+      image={{
+        src: `${base}screens/screen4.png`,
+        alt: 'Roadmap / GitHub Project de FerrisKey',
+      }}
+    >
+      <Bullet>Vision macro-temporelle essentielle pour le collaborateur</Bullet>
+      <Bullet>Visibilité sur les évolutions et les versions à venir</Bullet>
+      <Bullet>Tableau de pilotage et d'avancement transparent</Bullet>
+    </SplitSlide>
+
+    <!-- ====================== SLIDE 5 — Issues Templates ====================== -->
+    <SplitSlide
+      index={5}
+      total={total}
+      id="slide-5"
+      eyebrow="Partie 3 · Outil 3 / 5"
+      title="Les Issues"
+      image={{
+        src: `${base}screens/screen5.png`,
+        alt: "Template d'issue standardisé de FerrisKey",
+      }}
+    >
+      <Bullet>Formats stricts (Bug, Feature, Refactor) pour guider le besoin</Bullet>
+      <Bullet>Canal de discussion direct entre contributeurs et mainteneurs</Bullet>
+      <Bullet>Échanges asynchrones pour structurer la résolution</Bullet>
+    </SplitSlide>
+
+    <!-- ====================== SLIDE 6 — Documentations ====================== -->
+    <SplitSlide
+      index={6}
+      total={total}
+      id="slide-6"
+      eyebrow="Partie 3 · Outil 4 / 5"
+      title="Les Docs Techniques"
+      image={{
+        src: `${base}screens/screen6.png`,
+        alt: 'Portail de documentation de FerrisKey (docs.ferriskey.rs)',
+      }}
+    >
+      <Bullet>Centralisation des documentations utilitaires et d'architecture</Bullet>
+      <Bullet>Réduction radicale de la friction lors de la prise en main</Bullet>
+    </SplitSlide>
+
+    <!-- ====================== SLIDE 7 — Base de Code ====================== -->
+    <SplitSlide
+      index={7}
+      total={total}
+      id="slide-7"
+      eyebrow="Partie 3 · Outil 5 / 5"
+      title="Le Code Source"
+      image={{
+        src: `${base}screens/screen7.png`,
+        alt: 'Code source et pipeline CI/CD de FerrisKey',
+      }}
+    >
+      <Bullet>Une architecture lisible, typée et modulaire (Rust / TypeScript)</Bullet>
+      <Bullet>Des tests automatisés et une CI/CD pour sécuriser chaque modification</Bullet>
+    </SplitSlide>
+
+    <!-- ====================== SLIDE 8 — Comment Contribuer ====================== -->
+    <SplitSlide
+      index={8}
+      total={total}
+      id="slide-8"
+      eyebrow="Partie 4 · Synthèse"
+      title="Ouvrir la Voie : Comment Contribuer ?"
+      image={{
+        src: `${base}screens/screen8.png`,
+        alt: "Synthèse de l'activité et des contributions sur FerrisKey",
+      }}
+    >
+      <Bullet>
+        <strong class="font-bold text-white">Par le Code :</strong> Ouverture d'une
+        Pull Request rigoureuse liée à une Issue validée.
+      </Bullet>
+      <Bullet>
+        <strong class="font-bold text-white">Par la Revue :</strong> Analyser et valider
+        le code d'un pair est une contribution à part entière.
+      </Bullet>
+      <Bullet>
+        <strong class="font-bold text-white">Par la Gouvernance :</strong> Ouvrir
+        des tickets, participer aux débats techniques, trier et baliser.
+      </Bullet>
+    </SplitSlide>
+  </div>
+
+  <!-- Navigation par points (jump rapide pendant la soutenance) -->
+  <nav
+    aria-label="Navigation des slides"
+    class="fixed right-5 top-1/2 z-50 hidden -translate-y-1/2 flex-col gap-3 lg:flex"
+  >
+    {
+      Array.from({ length: total }).map((_, i) => (
+        <a
+          href={`#slide-${i + 1}`}
+          data-dot={i + 1}
+          aria-label={`Aller à la slide ${i + 1}`}
+          class="deck-dot h-3 w-3 border-2 border-rust-600/50 transition-all duration-200 hover:border-rust-500 hover:bg-rust-500/40"
+        />
+      ))
+    }
+  </nav>
+
+  <!-- Bouton flottant permanent : retour index -->
+  <BackToIndex />
+
+  <!-- Bouton plein écran (soutenance) -->
+  <FullscreenButton />
+</Layout>
+
+<style>
+  /* Point de navigation actif (toggle JS) */
+  .deck-dot.is-active {
+    background-color: #ea580c;
+    border-color: #f97316;
+    transform: scale(1.3);
+  }
+</style>
+
+<script>
+  const deck = document.getElementById('deck');
+  const slides = Array.from(document.querySelectorAll<HTMLElement>('[data-slide]'));
+  const dots = Array.from(document.querySelectorAll<HTMLElement>('[data-dot]'));
+
+  if (deck && slides.length) {
+    const goTo = (i: number) => {
+      const idx = Math.max(0, Math.min(slides.length - 1, i));
+      slides[idx]?.scrollIntoView({ behavior: 'smooth' });
+    };
+    const currentIndex = () => Math.round(deck.scrollTop / window.innerHeight);
+
+    // Navigation clavier (flèches, espace, PageUp/Down, Home/End)
+    window.addEventListener('keydown', (e) => {
+      const k = e.key;
+      if (k === 'ArrowDown' || k === 'PageDown' || k === ' ') {
+        e.preventDefault();
+        goTo(currentIndex() + 1);
+      } else if (k === 'ArrowUp' || k === 'PageUp') {
+        e.preventDefault();
+        goTo(currentIndex() - 1);
+      } else if (k === 'Home') {
+        e.preventDefault();
+        goTo(0);
+      } else if (k === 'End') {
+        e.preventDefault();
+        goTo(slides.length - 1);
+      } else if (k === 'f' || k === 'F') {
+        e.preventDefault();
+        document.getElementById('fullscreen-btn')?.click();
+      }
+    });
+
+    // Mise en évidence du point actif
+    const io = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            const i = slides.indexOf(entry.target as HTMLElement);
+            dots.forEach((d, di) => d.classList.toggle('is-active', di === i));
+          }
+        }
+      },
+      { root: deck, threshold: 0.5 },
+    );
+    slides.forEach((s) => io.observe(s));
+  }
+</script>

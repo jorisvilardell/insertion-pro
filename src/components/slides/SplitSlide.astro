@@ -1,0 +1,46 @@
+---
+import Slide from './Slide.astro';
+
+interface ImageData {
+  src: string;
+  alt: string;
+}
+
+interface Props {
+  index: number;
+  total: number;
+  eyebrow?: string;
+  title: string;
+  image: ImageData;
+  id?: string;
+}
+
+const { index, total, eyebrow, title, image, id } = Astro.props;
+---
+
+<Slide index={index} total={total} eyebrow={eyebrow} id={id}>
+  <div class="grid items-center gap-10 lg:grid-cols-[2fr_3fr] lg:gap-14">
+    <!-- 50% : Texte -->
+    <div>
+      <h2
+        class="text-4xl font-extrabold leading-tight tracking-tight text-white sm:text-5xl lg:text-6xl"
+      >
+        {title}
+      </h2>
+      <div class="mt-6 h-1.5 w-20 bg-rust-600"></div>
+
+      <ul class="mt-10 space-y-6">
+        <slot />
+      </ul>
+    </div>
+
+    <!-- 50% : Visuel (placeholder pour capture d'écran) -->
+    <div class="lg:pl-4">
+      <img
+        src={image.src}
+        alt={image.alt}
+        class="w-full h-auto rounded-xl shadow-2xl border border-slate-700 object-contain bg-base-950 aspect-[16/10]"
+      />
+    </div>
+  </div>
+</Slide>

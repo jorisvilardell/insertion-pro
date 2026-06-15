@@ -35,6 +35,8 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    /* Décalage pour la navbar sticky lors des sauts d'ancre */
+    scroll-padding-top: 5rem;
     font-family: var(--font-sans);
   }
 

@@ -1,0 +1,72 @@
+---
+import Icon from './Icon.astro';
+
+// Liens base-aware (GitHub Pages)
+const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
+const presentation = `${base}presentation/`;
+const repo = 'https://github.com/ferriskey/ferriskey/';
+
+const links = [
+  { label: 'Contexte', href: '#contexte' },
+  { label: 'Livrables', href: '#livrables' },
+];
+---
+
+<nav
+  class="sticky top-0 z-50 border-b-2 border-base-950 bg-base-900/80 backdrop-blur"
+>
+  <div
+    class="mx-auto flex max-w-6xl items-center justify-between gap-4 px-6 py-3"
+  >
+    <!-- Marque -->
+    <a href={base} class="group inline-flex items-center gap-2.5">
+      <span
+        class="inline-flex h-7 w-7 items-center justify-center border-2 border-rust-600 bg-rust-600/10 font-mono text-sm font-bold text-rust-500 transition-colors group-hover:bg-rust-600 group-hover:text-white"
+      >
+        F
+      </span>
+      <span class="font-mono text-sm font-semibold tracking-tight text-white">
+        FerrisKey<span class="text-rust-500"> · Restitution</span>
+      </span>
+    </a>
+
+    <!-- Liens de section (desktop) -->
+    <div class="hidden items-center gap-8 md:flex">
+      {
+        links.map((l) => (
+          <a
+            href={l.href}
+            class="text-sm font-medium text-slate-400 transition-colors hover:text-rust-400"
+          >
+            {l.label}
+          </a>
+        ))
+      }
+      <a
+        href={presentation}
+        class="text-sm font-medium text-slate-400 transition-colors hover:text-rust-400"
+      >
+        Présentation
+      </a>
+    </div>
+
+    <!-- Actions -->
+    <div class="flex items-center gap-3">
+      <a
+        href={presentation}
+        class="text-sm font-medium text-rust-400 transition-colors hover:text-rust-300 md:hidden"
+      >
+        Présentation
+      </a>
+      <a
+        href={repo}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-2 border-2 border-base-950 bg-rust-600 px-3 py-1.5 text-sm font-semibold text-white shadow-[3px_3px_0_0_var(--color-base-950)] transition-all duration-150 hover:-translate-x-0.5 hover:-translate-y-0.5 hover:bg-rust-500 hover:shadow-[5px_5px_0_0_var(--color-base-950)]"
+      >
+        <Icon name="github" class="h-4 w-4" />
+        <span class="hidden sm:inline">GitHub</span>
+      </a>
+    </div>
+  </div>
+</nav>
