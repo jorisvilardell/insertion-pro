@@ -1,5 +1,6 @@
 ---
 import Slide from './Slide.astro';
+import Icon from '../Icon.astro';
 
 interface ImageData {
   src: string;
@@ -13,13 +14,19 @@ interface Props {
   title: string;
   image: ImageData;
   id?: string;
+  shape?: 'rect' | 'circle';
+  profile?: { label: string; href: string };
 }
 
-const { index, total, eyebrow, title, image, id } = Astro.props;
+const { index, total, eyebrow, title, image, id, shape = 'rect', profile } =
+  Astro.props;
+
+const gridCols =
+  shape === 'circle' ? 'lg:grid-cols-[3fr_2fr]' : 'lg:grid-cols-[2fr_3fr]';
 ---
 
 <Slide index={index} total={total} eyebrow={eyebrow} id={id}>
-  <div class="grid items-center gap-10 lg:grid-cols-[2fr_3fr] lg:gap-14">
+  <div class={`grid items-center gap-10 ${gridCols} lg:gap-14`}>
     <!-- 50% : Texte -->
     <div>
       <h2
@@ -34,13 +41,38 @@ const { index, total, eyebrow, title, image, id } = Astro.props;
       </ul>
     </div>
 
-    <!-- 50% : Visuel (placeholder pour capture d'écran) -->
-    <div class="lg:pl-4">
-      <img
-        src={image.src}
-        alt={image.alt}
-        class="w-full h-auto rounded-xl shadow-2xl border border-slate-700 object-contain bg-base-950 aspect-[16/10]"
-      />
+    <!-- Visuel : capture (rect) ou avatar (cercle) -->
+    <div class={shape === 'circle' ? 'flex justify-center lg:pl-4' : 'lg:pl-4'}>
+      {
+        shape === 'circle' ? (
+          <div class="flex flex-col items-center gap-5">
+            <img
+              src={image.src}
+              alt={image.alt}
+              class="aspect-square w-56 rounded-full border-4 border-rust-600 object-cover shadow-[8px_8px_0_0_var(--color-base-950)] sm:w-72 lg:w-80"
+            />
+            {profile && (
+              <a
+                href={profile.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="group/gh inline-flex items-center gap-2 font-mono text-sm text-slate-400 transition-colors hover:text-rust-400"
+              >
+                <Icon name="github" class="h-4 w-4" />
+                <span class="underline-offset-4 group-hover/gh:underline">
+                  {profile.label}
+                </span>
+              </a>
+            )}
+          </div>
+        ) : (
+          <img
+            src={image.src}
+            alt={image.alt}
+            class="w-full h-auto rounded-xl shadow-2xl border border-slate-700"
+          />
+        )
+      }
     </div>
   </div>
 </Slide>

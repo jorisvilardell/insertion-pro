@@ -1,0 +1,23 @@
+---
+// Étape numérotée — pour un enchaînement (ex. Roadmap → Issues → PR)
+interface Props {
+  n: string;
+  title: string;
+}
+
+const { n, title } = Astro.props;
+---
+
+<li class="flex items-start gap-4">
+  <span
+    class="flex h-10 w-10 shrink-0 items-center justify-center border-2 border-rust-600 bg-rust-600/10 font-mono text-base font-bold text-rust-500"
+  >
+    {n}
+  </span>
+  <div>
+    <p class="text-2xl font-bold leading-tight text-white lg:text-3xl">{title}</p>
+    <p class="mt-1 text-lg leading-snug text-slate-400">
+      <slot />
+    </p>
+  </div>
+</li>

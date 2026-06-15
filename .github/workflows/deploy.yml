@@ -28,7 +28,10 @@ jobs:
         uses: withastro/action@v3
         with:
           node-version: 22
-          package-manager: pnpm@latest
+          # Épinglé sur la même version que le local (pnpm 9).
+          # pnpm 10 ignore "pnpm.onlyBuiltDependencies" de package.json
+          # et échoue sur les build scripts non approuvés (esbuild, sharp).
+          package-manager: pnpm@9.12.2
 
   deploy:
     needs: build

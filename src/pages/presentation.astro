@@ -3,11 +3,51 @@ import Layout from '../layouts/Layout.astro';
 import Slide from '../components/slides/Slide.astro';
 import SplitSlide from '../components/slides/SplitSlide.astro';
 import Bullet from '../components/slides/Bullet.astro';
+import Step from '../components/slides/Step.astro';
+import Icon from '../components/Icon.astro';
 import BackToIndex from '../components/BackToIndex.astro';
 import FullscreenButton from '../components/FullscreenButton.astro';
 
-const total = 8;
+const total = 7;
 const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
+
+// Slide "Mon quotidien" — gestion quotidienne (sans image)
+const casquettes = [
+  {
+    icon: 'cap' as const,
+    title: 'Alternant',
+    items: [
+      'Montée en compétences encadrée (école ↔ entreprise)',
+      'Rigueur et méthodes appliquées au réel',
+      'Jongler entre cours, missions et open source',
+    ],
+  },
+  {
+    icon: 'wrench' as const,
+    title: 'Mainteneur',
+    items: [
+      "Triage des issues et revues de PR au fil de l'eau",
+      'Suivi de la roadmap et synchronisations hebdomadaires',
+      'Garant de la qualité et de la vision du projet',
+    ],
+  },
+  {
+    icon: 'server' as const,
+    title: 'Entrepreneur',
+    items: [
+      "Conception d'applications pour les clients",
+      'Mise en production de FerrisKey',
+      'Remontée des bugs et des besoins',
+    ],
+    projects: [
+      { label: 'alberasolsetenergies.fr', href: 'https://alberasolsetenergies.fr/' },
+      {
+        label: 'zukquote.alberasolsetenergies.fr',
+        href: 'https://zukquote.alberasolsetenergies.fr/',
+      },
+    ],
+  },
+];
 ---
 
 <Layout title="Soutenance — Insertion dans l'Open Source">
@@ -31,7 +71,7 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
           <img
             src={`${base}screens/screen1.png`}
             alt="Logo FerrisKey"
-            class="w-full h-auto rounded-xl shadow-2xl border border-slate-700 object-contain bg-base-950 aspect-[16/10]"
+            class="w-full h-auto rounded-xl shadow-2xl border border-slate-700"
           />
         </div>
 
@@ -41,118 +81,181 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
       </div>
     </Slide>
 
-    <!-- ====================== SLIDE 2 — Mon Rôle ====================== -->
+    <!-- ====================== SLIDE 2 — Casquette Mainteneur ====================== -->
     <SplitSlide
       index={2}
       total={total}
       id="slide-2"
-      eyebrow="Partie 2 · La Casquette Mainteneur"
-      title="Mon Rôle : Maintenir"
+      eyebrow="Partie 2 · La casquette de Mainteneur"
+      title="Mon rôle : Mainteneur"
+      shape="circle"
+      profile={{ label: 'jorisvilardell', href: 'https://github.com/jorisvilardell' }}
       image={{
-        src: `${base}screens/screen2.png`,
-        alt: 'Activité du dépôt FerrisKey : issues et Pull Requests triées',
+        src: `${base}avatar.webp`,
+        alt: 'Photo de profil',
       }}
     >
-      <Bullet>Revue et qualification quotidienne des issues</Bullet>
-      <Bullet>Revue de code et validation des Pull Requests</Bullet>
-      <Bullet>Suivi de la Roadmap et synchronisations d'équipe (Weekly)</Bullet>
-      <Bullet>Gestion, communication et Onboarding des contributeurs</Bullet>
-      <Bullet>Amélioration continue : Feature, Fix &amp; Déploiement en production</Bullet>
+      <Bullet>Garant de la santé et de la qualité du dépôt (MCO)</Bullet>
+      <Bullet>Triage quotidien : qualifier et prioriser issues &amp; Pull Requests</Bullet>
+      <Bullet>Gardien de la vision : aligner les contributions sur la raison d'être du projet</Bullet>
+      <Bullet>Animer la communauté : synchronisations hebdomadaires, communication, arbitrages</Bullet>
     </SplitSlide>
 
-    <!-- ====================== SLIDE 3 — Guide de Contribution ====================== -->
+    <!-- ====================== SLIDE 3 — Les mécaniques clés ====================== -->
     <SplitSlide
       index={3}
       total={total}
       id="slide-3"
-      eyebrow="Partie 3 · Outil 1 / 5"
-      title="Le Guide de Contribution"
-      image={{
-        src: `${base}screens/screen3.png`,
-        alt: 'Fichier CONTRIBUTING.md du dépôt FerrisKey',
-      }}
-    >
-      <Bullet>Fichier CONTRIBUTING.md : La pierre angulaire</Bullet>
-      <Bullet>Définition claire des règles du dépôt (styles, formats de commits)</Bullet>
-      <Bullet>Conseils et astuces techniques pour pouvoir cloner et compiler</Bullet>
-    </SplitSlide>
-
-    <!-- ====================== SLIDE 4 — Roadmap ====================== -->
-    <SplitSlide
-      index={4}
-      total={total}
-      id="slide-4"
-      eyebrow="Partie 3 · Outil 2 / 5"
-      title="La Roadmap Projet"
+      eyebrow="Partie 2 · Les mécaniques clés"
+      title="Le cycle de vie : Roadmap → Issues → PR"
       image={{
         src: `${base}screens/screen4.png`,
         alt: 'Roadmap / GitHub Project de FerrisKey',
       }}
     >
-      <Bullet>Vision macro-temporelle essentielle pour le collaborateur</Bullet>
-      <Bullet>Visibilité sur les évolutions et les versions à venir</Bullet>
-      <Bullet>Tableau de pilotage et d'avancement transparent</Bullet>
+      <Step n="01" title="Roadmap">
+        Définir le cap : versions, priorités et vision partagés publiquement.
+      </Step>
+      <Step n="02" title="Issues">
+        Découper et qualifier le travail : bugs, features et refactors balisés.
+      </Step>
+      <Step n="03" title="Pull Requests">
+        Livrer et valider : du code revu, discuté et intégré sans casser l'existant.
+      </Step>
     </SplitSlide>
 
-    <!-- ====================== SLIDE 5 — Issues Templates ====================== -->
+    <!-- ====================== SLIDE 4 — Mon quotidien (sans image) ====================== -->
+    <Slide index={4} total={total} eyebrow="Partie 2 · Le quotidien" id="slide-4">
+      <div class="mx-auto w-full max-w-6xl">
+        <div class="text-center">
+          <h2
+            class="text-4xl font-extrabold leading-tight tracking-tight text-white sm:text-5xl lg:text-6xl"
+          >
+            Mon quotidien : trois casquettes
+          </h2>
+          <div class="mx-auto mt-6 h-1.5 w-20 bg-rust-600"></div>
+        </div>
+
+        <div class="mt-12 grid items-stretch gap-6 md:grid-cols-3">
+          {
+            casquettes.map((c) => (
+              <div class="group relative flex flex-col border-2 border-base-950 bg-base-800 p-7 shadow-[6px_6px_0_0_var(--color-base-950)] transition-all duration-200 hover:-translate-y-1 hover:border-rust-600/50 hover:shadow-[8px_8px_0_0_var(--color-rust-600)]">
+                <div class="flex items-center gap-3 border-b-2 border-base-950 pb-5">
+                  <span class="inline-flex h-12 w-12 shrink-0 items-center justify-center border-2 border-rust-600/40 bg-rust-600/10 text-rust-500 transition-colors duration-200 group-hover:bg-rust-600 group-hover:text-white">
+                    <Icon name={c.icon} class="h-6 w-6" />
+                  </span>
+                  <h3 class="text-xl font-bold text-white lg:text-2xl">{c.title}</h3>
+                </div>
+                <ul class="mt-6 space-y-4">
+                  {c.items.map((it) => (
+                    <li class="flex items-start gap-3">
+                      <span
+                        class="mt-2 h-1.5 w-1.5 shrink-0 bg-rust-500"
+                        aria-hidden="true"
+                      />
+                      <span class="text-base leading-snug text-slate-300 lg:text-lg">
+                        {it}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+
+                {
+                  c.projects && (
+                    <p class="mt-6 flex items-center gap-2 border-t-2 border-base-950 pt-4 font-mono text-xs uppercase tracking-wider text-rust-400">
+                      <Icon name="server" class="h-4 w-4" />
+                      Survolez : déploiements
+                    </p>
+                  )
+                }
+
+                {
+                  c.projects && (
+                    <div class="pointer-events-none absolute inset-x-0 top-full z-20 origin-top scale-95 pt-3 opacity-0 transition-all duration-200 group-hover:pointer-events-auto group-hover:scale-100 group-hover:opacity-100">
+                      <div class="border-2 border-rust-600 bg-base-950 p-4 shadow-[6px_6px_0_0_var(--color-base-950)]">
+                        <p class="flex items-center gap-2 font-mono text-xs uppercase tracking-wider text-rust-400">
+                          <Icon name="rocket" class="h-4 w-4" />
+                          Déployé en production
+                        </p>
+                        <ul class="mt-3 space-y-2">
+                          {c.projects.map((p) => (
+                            <li>
+                              <a
+                                href={p.href}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="inline-flex items-center gap-2 break-all text-sm text-slate-200 transition-colors hover:text-rust-400"
+                              >
+                                <span class="h-1.5 w-1.5 shrink-0 bg-rust-500" />
+                                {p.label}
+                              </a>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </div>
+                  )
+                }
+              </div>
+            ))
+          }
+        </div>
+
+        <p class="mx-auto mt-12 max-w-3xl text-center text-lg text-slate-400 lg:text-xl">
+          <span class="font-semibold text-rust-400">Un cercle vertueux</span> : le
+          terrain client nourrit la maintenance, qui renforce mes compétences — et
+          pousse à la contribution.
+        </p>
+      </div>
+    </Slide>
+
+    <!-- ====================== SLIDE 5 — Onboarding contributeur ====================== -->
     <SplitSlide
       index={5}
       total={total}
       id="slide-5"
-      eyebrow="Partie 3 · Outil 3 / 5"
-      title="Les Issues"
+      eyebrow="Partie 3 · Accueillir & Outiller"
+      title="Onboarding : abaisser la barrière d'entrée"
       image={{
-        src: `${base}screens/screen5.png`,
-        alt: "Template d'issue standardisé de FerrisKey",
+        src: `${base}screens/screen3.png`,
+        alt: 'Fichier CONTRIBUTING.md du dépôt FerrisKey',
       }}
     >
-      <Bullet>Formats stricts (Bug, Feature, Refactor) pour guider le besoin</Bullet>
-      <Bullet>Canal de discussion direct entre contributeurs et mainteneurs</Bullet>
-      <Bullet>Échanges asynchrones pour structurer la résolution</Bullet>
+      <Bullet><strong class="font-bold text-white">CONTRIBUTING.md</strong> : les règles du jeu (styles, commits, cloner &amp; compiler)</Bullet>
+      <Bullet>Documentation technique centralisée (architecture, docs.ferriskey.rs)</Bullet>
+      <Bullet>Templates d'issues : un cadre clair pour exprimer un besoin</Bullet>
+      <Bullet>Code lisible, typé et testé (CI/CD) → on contribue en confiance</Bullet>
     </SplitSlide>
 
-    <!-- ====================== SLIDE 6 — Documentations ====================== -->
+    <!-- ====================== SLIDE 6 — Casquette Contributeur ====================== -->
     <SplitSlide
       index={6}
       total={total}
       id="slide-6"
-      eyebrow="Partie 3 · Outil 4 / 5"
-      title="Les Docs Techniques"
+      eyebrow="Partie 3 · La casquette de Contributeur"
+      title="Devenir Contributeur"
       image={{
-        src: `${base}screens/screen6.png`,
-        alt: 'Portail de documentation de FerrisKey (docs.ferriskey.rs)',
+        src: `${base}screens/screen8.png`,
+        alt: "Synthèse de l'activité et des contributions sur FerrisKey",
       }}
     >
-      <Bullet>Centralisation des documentations utilitaires et d'architecture</Bullet>
-      <Bullet>Réduction radicale de la friction lors de la prise en main</Bullet>
+      <Bullet>Pas besoin d'être expert : une première contribution peut être minime</Bullet>
+      <Bullet>S'approprier une issue balisée, puis proposer une Pull Request</Bullet>
+      <Bullet>Apporter un autre regard : tester, documenter, remonter un bug</Bullet>
+      <Bullet>Monter en compétence au contact de la revue et de la communauté</Bullet>
+      <Bullet>Chacun fait avancer le projet, à son échelle</Bullet>
     </SplitSlide>
 
-    <!-- ====================== SLIDE 7 — Base de Code ====================== -->
+    <!-- ====================== SLIDE 7 — Comment Contribuer ====================== -->
     <SplitSlide
       index={7}
       total={total}
       id="slide-7"
-      eyebrow="Partie 3 · Outil 5 / 5"
-      title="Le Code Source"
+      eyebrow="Partie 4 · Passer à l'action"
+      title="Ouvrir la Voie : Comment Contribuer ?"
       image={{
         src: `${base}screens/screen7.png`,
         alt: 'Code source et pipeline CI/CD de FerrisKey',
-      }}
-    >
-      <Bullet>Une architecture lisible, typée et modulaire (Rust / TypeScript)</Bullet>
-      <Bullet>Des tests automatisés et une CI/CD pour sécuriser chaque modification</Bullet>
-    </SplitSlide>
-
-    <!-- ====================== SLIDE 8 — Comment Contribuer ====================== -->
-    <SplitSlide
-      index={8}
-      total={total}
-      id="slide-8"
-      eyebrow="Partie 4 · Synthèse"
-      title="Ouvrir la Voie : Comment Contribuer ?"
-      image={{
-        src: `${base}screens/screen8.png`,
-        alt: "Synthèse de l'activité et des contributions sur FerrisKey",
       }}
     >
       <Bullet>
@@ -215,7 +318,7 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
     };
     const currentIndex = () => Math.round(deck.scrollTop / window.innerHeight);
 
-    // Navigation clavier (flèches, espace, PageUp/Down, Home/End)
+    // Navigation clavier (flèches, espace, PageUp/Down, Home/End, F = plein écran)
     window.addEventListener('keydown', (e) => {
       const k = e.key;
       if (k === 'ArrowDown' || k === 'PageDown' || k === ' ') {
