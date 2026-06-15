@@ -4,10 +4,12 @@ import Card from './Card.astro';
 const cards = [
   {
     title: 'Pilotage Stratégique',
-    description:
-      'Arbitrage de la roadmap publique et synchronisations hebdomadaires (weekly). La mise en production sur le terrain alimente des retours concrets sur les directions et les fonctionnalités à prioriser, au plus près des besoins clients.',
     icon: 'map' as const,
-    index: '01',
+    actions: [
+      'Arbitrage de la roadmap publique',
+      'Synchronisations hebdomadaires (weekly)',
+      'Retours du terrain qui orientent les priorités',
+    ],
     links: [
       { label: 'Consulter la Roadmap', href: 'https://ferriskey.rs/roadmap' },
       {
@@ -18,10 +20,12 @@ const cards = [
   },
   {
     title: 'Amélioration Continue',
-    description:
-      'Maintien en condition opérationnelle au quotidien : triage et qualification des issues, revue de code, validation des Pull Requests, puis livraison de correctifs et de nouvelles fonctionnalités.',
     icon: 'cycle' as const,
-    index: '02',
+    actions: [
+      'Triage et qualification des issues',
+      'Revue de code et validation des Pull Requests',
+      'Livraison de correctifs et de fonctionnalités',
+    ],
     links: [
       {
         label: 'Tableau des Issues',
@@ -35,10 +39,12 @@ const cards = [
   },
   {
     title: 'Mise en Production B2B',
-    description:
-      'Déploiement de la solution en conditions réelles chez un client final, avec intégration et sécurisation des accès de ses utilisateurs.',
     icon: 'rocket' as const,
-    index: '03',
+    actions: [
+      'Déploiement de FerrisKey en conditions réelles',
+      'Sécurisation des accès des utilisateurs finaux',
+      'Remontée des bugs et des besoins clients',
+    ],
     links: [
       {
         label: 'Cas client : Albera Sols & Énergies',
@@ -58,8 +64,8 @@ const cards = [
       Les livrables concrets de l'action
     </h2>
     <p class="mt-4 max-w-2xl text-slate-400">
-      Trois axes de contribution illustrant le cycle complet de maintenance d'un
-      projet open source mature.
+      Trois terrains d'action, des résultats concrets : pilotage, amélioration
+      continue et mise en production.
     </p>
 
     <div class="mt-12 grid gap-6 md:grid-cols-3">
